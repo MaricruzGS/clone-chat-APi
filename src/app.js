@@ -4,6 +4,30 @@ const responseHandlers = require('./utils/handleResponses')
 
 const app = express()
 
+const db = require('./utils/database')
+
+const initModels = require('./models/initModels')
+
+const userRouter = require('./users/users.router')
+
+app.use(express.json())
+
+db.authenticate()
+   .then(() => {
+    console.log('Database credentials are correct')
+   })
+   .catch((err))
+
+db.sync()
+   .then(() => {
+    console.log('The virus database has been updated')
+   })
+   .catch(err => {
+    console.log(err)
+   })
+
+initModels()
+
 app.get('/', (req, res) => {
     responseHandlers.success({
         res,
@@ -24,6 +48,8 @@ app.use('*', (req, res)=> {
         message: 'URL not found, please try with http://localhost:9000/',
     })
 })
+
+app.use('/api/v1', userRouter)
 
 app.listen(9000,() => {
     console.log('Server started at port 9000')
