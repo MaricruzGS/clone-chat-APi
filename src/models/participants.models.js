@@ -5,29 +5,28 @@ const Conversations = require('./conversations.models')
 
 const Participants = db.define('participants', {
     id: {
-         type: DataTypes.INTEGER,
-         autoIncrement: true,
+         type: DataTypes.UUID,
          primaryKey: true,
     },
-    user_id: {
-         type:DataTypes.INTEGER,
+    userId: {
+         type:DataTypes.UUID,
          allowNull: false,
          references: {
              model: Users,
              key: id
          }
     },
-    conversation_id: {
-         type: DataTypes.INTEGER,
+    conversationId: {
+         type: DataTypes.UUID,
          allowNull: false,
          references: {
             model: Conversations,
             key: id
          }
     },
-    is_admin: {
-         type: DataTypes.INTEGER,
-         allowNull: false
+    isAdmin: {
+         type: DataTypes.BOOLEAN,
+         defaultValue: false
     }
 })
 

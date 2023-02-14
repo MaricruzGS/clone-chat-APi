@@ -4,17 +4,17 @@ const Users = require('../models/users.models')
 
 const findAllUsers = async () => {
     const data = await Users.findAll({
-        attributes:['id'],
+        attributes:'id',
         include: {
             model: Participants,
-            attributes: ['id']
+            attributes: 'id'
         }
     })
     return data
 }
 
 const findUserById = async (id) => {
-    const data = await Participants.findOne({
+    const data = await Users.findOne({
         where: {
             id:id
         }

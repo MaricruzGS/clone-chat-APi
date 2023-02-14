@@ -3,33 +3,32 @@ const db = require('../utils/database')
 
 const Users = db.define('users', {
     id: {
-       type: DataTypes.INTEGER,
-       autoIncrement: true,
+       type: DataTypes.UUID,
        primaryKey: true,
     },
-    first_name: {
+    firstName: {
        type: DataTypes.STRING,
        allowNull: false,
     },
-    last_name: {
+    lastName: {
        type: DataTypes.STRING,
        allowNull: false,
     },
     email: {
        type: DataTypes.STRING,
-       allowNull: false
+       allowNull: false,
+       unique: true,
     },
     password: {
        type: DataTypes.STRING,
        allowNull: false
     },
-    profile_image: {
-      type: DataTypes.CHAR,
-       allowNull: true
+    profileImage: {
+      type: DataTypes.STRING,
     },
-    is_active: {
+    isActive: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        defaultValue: true,
     },
     phone: {
         type: DataTypes.NUMBER,

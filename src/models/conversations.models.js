@@ -3,12 +3,11 @@ const db = require('../utils/database')
 
 const Conversations = db.define('conversations', {
     id: {
-       type: DataTypes.INTEGER,
-       autoIncrement: true,
+       type: DataTypes.UUID,
        primaryKey: true,
     },
-    profile_image: {
-       type: DataTypes.CHAR,
+    profileImage: {
+       type: DataTypes.STRING,
        allowNull:true
     },
     name: {
@@ -19,7 +18,7 @@ const Conversations = db.define('conversations', {
        type:DataTypes.INTEGER,
        allowNull: false
     },
-    is_group: {
+    isGroup: {
        type: DataTypes.BOOLEAN,
        allowNull: false
     }
